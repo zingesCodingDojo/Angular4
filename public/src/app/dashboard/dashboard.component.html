@@ -1,0 +1,41 @@
+<div id="master">
+    <div id="header">
+        <h1>Welcome, {{ user.name }}!</h1>
+        <a [routerLink]="['/user', user.name]">Bucket List</a>
+        <a href='/logout'>Log Out</a>
+        <a [routerLink]="['/dashboard']">Dashboard</a>
+    </div>
+    <div id="mainBody">
+        <form (submit)='create();' #bucketForm='ngForm'>
+            <ul>
+                <input type="text" name="title"
+                    required
+                    minlength="5"
+                    [(ngModel)]='bucket.title'
+                    #title='ngModel'
+                    placeholder="Title"/>
+                    <p *ngIf='title.errors && title.touched'>Please have 5 characters minimum for a title</p>
+                <input type="text" name="description"
+                    required
+                    minlength="10"
+                    [(ngModel)]="bucket.description"
+                    #description="ngModel"
+                    placeholder="Description"/>
+                    <p *ngIf="description.errors && description.touched">Please have 10 characters minimum for description!</p>
+            </ul>
+            <select name="users" [(ngModel)]="bucket.tagged">
+                <option *ngFor="let item of users" value={{item._id}}>{{ item.name }}</option>
+            </select>
+            <button type="submit" [disabled]="!bucketForm.form.valid">Add Bucket Item</button>
+        </form>
+    </div>
+    <div id="footer">
+        <h2>{{ user.name }} Bucket List Items</h2>
+            <p *ngFor="let thing of user.buckets">
+                <input *ngIf="thing.checked" (click)="checked(thing)" type="checkbox" checked>
+                <input *ngIf="!thing.checked" (click)="checked(thing)" type="checkbox">{{ thing.creator }} | {{ thing. title}} - {{ thing.description }} - {{ thing.createdAt | date:medium }}
+            </p>
+    </div>
+        <h2>List of other users (click to view their bucket list items):</h2>
+        <p *ngFor="let allUsers of users"><a [routerLink]="['/user', allUsers.name]">{{ allUsers.name }}</a></p>
+</div>

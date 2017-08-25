@@ -1,0 +1,17 @@
+#master{
+    width: 100%;
+}
+    .yes img, p{
+        display: inline-block;
+        margin: 0.09em;
+    }
+    .yes img{
+        width: 45px;
+    }
+    .no img, p{
+        display: inline-block;
+        margin: 0.09em;
+    }
+    .no img{
+        width: 30px;
+    }

@@ -1,0 +1,22 @@
+<div id="master">
+    <div id="header">
+        <h1>{{ user.name }}'s Bucket List</h1>
+        <a [routerLink]="['/user', user.name]">Bucket List</a>
+        <a href='/logout'>Log Out</a>
+        <a [routerLink]="['/dashboard']">Dashboard</a>
+    </div>
+    <div id="mainBody">
+        <h3>Done</h3>
+        <h4 class="yes" *ngFor="let items of user.buckets">
+            <span *ngIf="items.checked">
+                <img src='http://images.techhive.com/images/article/2016/11/12221514614_6dcba1c70f_o-100694322-large.jpg'><p>{{ items.creator }} | {{ items.title }} - {{ items.description }} - {{ items.createdAt | date:medium }}</p></span>
+        </h4>
+        <h3>Pending</h3>
+        <h4 class="no" *ngFor='let thing of user.buckets'>
+            <span *ngIf='!thing.checked'>
+                <img src='http://img.freepik.com/free-icon/radio-button-unchecked_318-40717.jpg?size=338&ext=jpg'><p>{{ thing.creator }} | {{ thing.title }} - {{ thing.description }} - {{ thing.createdAt | date:medium }}</p></span>
+        </h4>
+    </div>
+    <div id="footer">
+    </div>
+</div>

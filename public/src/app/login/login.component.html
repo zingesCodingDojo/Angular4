@@ -1,0 +1,20 @@
+<div id="master">
+    <div id="header">
+        <h1>Bucket Lists Login & Registration</h1>
+    </div>
+    <div id="mainBody">
+        <form (submit)="login();" #loginForm="ngForm">
+            <ul>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name"
+                    required
+                    [(ngModel)]="user.name"
+                    #name="ngModel"/>
+                <p *ngIf="name.errors && name.touched">Name is required!</p>
+            </ul>
+            <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
+        </form>
+    </div>
+    <div id="footer">
+    </div>
+</div>
